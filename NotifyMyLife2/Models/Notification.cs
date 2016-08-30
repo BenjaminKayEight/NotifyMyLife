@@ -8,16 +8,16 @@ namespace NotifyMyLife2.Models {
     class Notification {
         public bool IsActive { get; set; }
         public string Message { get; set; }
-        public DateTime StartTime { get; set; }
-        public DateTime EndTime { get; set; }
+        public TimeSpan StartTime { get; set; }
+        public TimeSpan EndTime { get; set; }
         public int RepPeriod { get; set; } // in minues
 
 
         public Notification() {
             IsActive = true;
             Message = "Default Notification Message";
-            StartTime = DateTime.Now;
-            EndTime = DateTime.Now.AddMinutes(10);
+            StartTime = DateTime.Now.TimeOfDay;
+            EndTime = StartTime.Add(new TimeSpan(00,30,00));
             RepPeriod = 1;
 
         }
