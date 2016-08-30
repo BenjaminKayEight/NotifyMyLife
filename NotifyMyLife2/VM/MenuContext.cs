@@ -1,4 +1,5 @@
-﻿using System;
+﻿using NotifyMyLife2.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -80,6 +81,11 @@ namespace NotifyMyLife2 {
             }
         }
         private void AddNewNotificationMenuItem_Click(object sender, EventArgs e) {
+            Notification bob = new Notification();
+            if (Properties.Settings.Default.Notifications == null) {
+                Properties.Settings.Default.Notifications = new List<Notification>();
+            }
+            Properties.Settings.Default.Notifications.Add(bob);
 
         }
         private void StopAllNotificationsMenuItem_Click(object sender, EventArgs e) {

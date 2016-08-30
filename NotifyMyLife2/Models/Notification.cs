@@ -6,10 +6,20 @@ using System.Threading.Tasks;
 
 namespace NotifyMyLife2.Models {
     class Notification {
-        public int IsActive { get; set; }
+        public bool IsActive { get; set; }
         public string Message { get; set; }
         public DateTime StartTime { get; set; }
         public DateTime EndTime { get; set; }
-        public DateTime RepPeriod { get; set; }
+        public int RepPeriod { get; set; } // in minues
+
+
+        public Notification() {
+            IsActive = true;
+            Message = "Default Notification Message";
+            StartTime = DateTime.Now;
+            EndTime = DateTime.Now.AddMinutes(10);
+            RepPeriod = 1;
+
+        }
     }
 }
