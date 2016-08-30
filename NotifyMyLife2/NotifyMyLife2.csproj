@@ -69,9 +69,23 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="VM\AddNewNotificationPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="VM\EnableNotificationPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="MenuContext.cs" />
+    <Compile Include="VM\AddNewNotificationPage.xaml.cs">
+      <DependentUpon>AddNewNotificationPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="VM\EnableNotificationPage.xaml.cs">
+      <DependentUpon>EnableNotificationPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="VM\MenuContext.cs" />
     <Compile Include="Models\Notification.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
@@ -98,6 +112,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\NotifyMyLife2.ico" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

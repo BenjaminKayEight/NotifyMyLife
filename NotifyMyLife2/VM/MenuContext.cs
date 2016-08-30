@@ -3,20 +3,25 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Forms;
 
 namespace NotifyMyLife2 {
     class MenuContext {
-        private ToolStripMenuItem CloseMenuItem,
+        private Window Main;
+        private ToolStripMenuItem OpenSettingsMenuItem,
+            CloseMenuItem,
             AddNewNotificationMenuItem,
             StopAllNotificationsMenuItem,
             EnableNotificationsMenuItem;
         private ContextMenuStrip TrayIconContextMenu;
-        public ContextMenuStrip Initialize() {
+        public ContextMenuStrip Initialize(Window main) {
+            this.Main = main;
 
             // optional icon menu   
             TrayIconContextMenu = new ContextMenuStrip();
 
+            OpenSettingsMenuItem = new ToolStripMenuItem();
             CloseMenuItem = new ToolStripMenuItem();
             AddNewNotificationMenuItem = new ToolStripMenuItem();
             StopAllNotificationsMenuItem = new ToolStripMenuItem();
@@ -26,7 +31,7 @@ namespace NotifyMyLife2 {
 
             //TrayIconContextMenu
 
-            TrayIconContextMenu.Items.AddRange(new ToolStripItem[] {
+            TrayIconContextMenu.Items.AddRange(new ToolStripItem[] {OpenSettingsMenuItem,
                 CloseMenuItem, AddNewNotificationMenuItem,
                 StopAllNotificationsMenuItem,
                 EnableNotificationsMenuItem
@@ -35,9 +40,14 @@ namespace NotifyMyLife2 {
             TrayIconContextMenu.Size = new System.Drawing.Size(153, 70);
 
             //closeMenuItem
+            OpenSettingsMenuItem.Name = "OpenSettingsMenuItem";
+            OpenSettingsMenuItem.Size = new System.Drawing.Size(152, 22);
+            OpenSettingsMenuItem.Text = "Open Settings";
+            OpenSettingsMenuItem.Click += new EventHandler(OpenSettingsMenuItem_Click);
+
             CloseMenuItem.Name = "CloseMenuItem";
             CloseMenuItem.Size = new System.Drawing.Size(152, 22);
-            CloseMenuItem.Text = "Close NotifyMyLife";
+            CloseMenuItem.Text = "Close NotifyMyLife2";
             CloseMenuItem.Click += new EventHandler(CloseMenuItem_Click);
 
             AddNewNotificationMenuItem.Name = "AddNewNotificationMenuItem";
@@ -58,9 +68,15 @@ namespace NotifyMyLife2 {
             TrayIconContextMenu.ResumeLayout(false);
             return TrayIconContextMenu;
         }
+
+        private void OpenSettingsMenuItem_Click(object sender, EventArgs e) {
+            Main.Show();
+            Main.WindowState = WindowState.Normal;
+        }
         private void CloseMenuItem_Click(object sender, EventArgs e) {
-            if (MessageBox.Show("Do You Really Want To Close Me?", "Are You Sure?", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation, MessageBoxDefaultButton.Button2) == DialogResult.Yes) {
-                Application.Exit();
+            if (System.Windows.Forms.MessageBox.Show("Do You Really Want To Close Me?", "Are You Sure?", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation, MessageBoxDefaultButton.Button2) == DialogResult.Yes) {
+                System.Windows.Forms.Application.Exit();
+                
             }
         }
         private void AddNewNotificationMenuItem_Click(object sender, EventArgs e) {
