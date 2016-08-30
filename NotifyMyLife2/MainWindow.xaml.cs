@@ -22,49 +22,18 @@ namespace NotifyMyLife2 {
     /// Interaction logic for MainWindow.xaml
     /// </summary>
     public partial class MainWindow : Window {
-        private bool CLOSE=false;
-        private NotifyIcon TrayIcon = new NotifyIcon();
-        private Notification[] active = { };
+        public bool CLOSE = false;
+        
         public MainWindow() {
-            System.Windows.Forms.Application.ApplicationExit += new EventHandler(this.OnApplicationExit);
             InitializeComponent();
-            InitializeTrayIcon();
-            this.ShowInTaskbar = false;
-           
-            this.Hide();
-
-        }
-        private void InitializeTrayIcon() {
-            TrayIcon.Visible = true;
-            TrayIcon.BalloonTipIcon = ToolTipIcon.Info;
-            TrayIcon.BalloonTipText = "I noticed you double clicked me!";
-            TrayIcon.BalloonTipTitle = "Developed by Benjamin Kidd";
-            TrayIcon.Text = "NotifyMyLife" + "\nActive Notifications: " + active.Length;
-
-            TrayIcon.Icon = Properties.Resources.NotifyMyLife2;
-            //optional doubleclick
-            TrayIcon.DoubleClick += TrayIcon_DoubleClick;
-            TrayIcon.ContextMenuStrip = new MenuContext().Initialize(this);
             
+            this.ShowInTaskbar = false;
+            this.Hide();
         }
 
         private void Button_Click(object sender, RoutedEventArgs e) {
-            
-
-    
-            
         }
-
-        private void TrayIcon_DoubleClick(object sender, EventArgs e) {
-            TrayIcon.ShowBalloonTip(10000);
-        }
-
-        private void OnApplicationExit(object sender, EventArgs e) {
-            CLOSE = true;
-            this.Close();
-            TrayIcon.Visible = false;
-            
-        }
+        
         protected override void OnStateChanged(EventArgs e) {
             if(WindowState == System.Windows.WindowState.Minimized) {
                 this.Hide();
